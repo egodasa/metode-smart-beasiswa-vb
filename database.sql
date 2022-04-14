@@ -1,154 +1,83 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Waktu pembuatan: 13 Apr 2022 pada 14.26
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.2.30
+-- Adminer 4.6.1 MySQL dump
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+SET NAMES utf8mb4;
+
+DROP TABLE IF EXISTS `tb_hitung`;
+CREATE TABLE `tb_hitung` (
+  `id_hitung` int(11) NOT NULL AUTO_INCREMENT,
+  `nm_hitung` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `tgl_hitung` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_hitung`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `db_beasiswa`
---
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_alternatif`
---
-
-CREATE TABLE `tb_alternatif` (
-  `id_alternatif` int(11) NOT NULL,
-  `nm_alternatif` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_alternatif`
---
-
-INSERT INTO `tb_alternatif` (`id_alternatif`, `nm_alternatif`) VALUES
-(1, 'Acer'),
-(2, 'Lenovo'),
-(3, 'Asus'),
-(4, 'HP');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_kriteria`
---
-
+DROP TABLE IF EXISTS `tb_kriteria`;
 CREATE TABLE `tb_kriteria` (
-  `id_kriteria` int(11) NOT NULL,
+  `id_kriteria` int(11) NOT NULL AUTO_INCREMENT,
   `nm_kriteria` varchar(255) NOT NULL,
-  `bobot` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_kriteria`
---
+  `bobot` int(11) NOT NULL,
+  PRIMARY KEY (`id_kriteria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `tb_kriteria` (`id_kriteria`, `nm_kriteria`, `bobot`) VALUES
-(1, 'Merek', 100),
-(2, 'Prosesor', 80),
-(3, 'Kapasitas HDD', 90),
-(4, 'Harga Jual', 50),
-(5, 'RAM', 70);
+(1,	'Pendapatan Orang Tua',	40),
+(2,	'Kondisi Orang Tua',	20),
+(3,	'Nilai Raport',	10),
+(4,	'Jumlah Tanggungan Orang Tua',	30);
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_nilai`
---
-
+DROP TABLE IF EXISTS `tb_nilai`;
 CREATE TABLE `tb_nilai` (
-  `id_nilai` int(11) NOT NULL,
+  `id_nilai` int(11) NOT NULL AUTO_INCREMENT,
   `id_kriteria` int(11) NOT NULL,
-  `id_alternatif` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_siswa` int(11) NOT NULL,
+  `nilai` int(11) NOT NULL,
+  PRIMARY KEY (`id_nilai`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data untuk tabel `tb_nilai`
---
+INSERT INTO `tb_nilai` (`id_nilai`, `id_kriteria`, `id_siswa`, `nilai`) VALUES
+(1,	1,	1,	75),
+(2,	2,	1,	100),
+(3,	3,	1,	80),
+(4,	4,	1,	90),
+(5,	5,	1,	65),
+(6,	1,	2,	90),
+(7,	2,	2,	100),
+(8,	3,	2,	60),
+(9,	4,	2,	75),
+(10,	5,	2,	70),
+(11,	1,	3,	80),
+(12,	2,	3,	90),
+(13,	3,	3,	85),
+(14,	4,	3,	60),
+(15,	5,	3,	70),
+(16,	1,	4,	70),
+(17,	2,	4,	80),
+(18,	3,	4,	50),
+(19,	4,	4,	45),
+(20,	5,	4,	80);
 
-INSERT INTO `tb_nilai` (`id_nilai`, `id_kriteria`, `id_alternatif`, `nilai`) VALUES
-(1, 1, 1, 75),
-(2, 2, 1, 100),
-(3, 3, 1, 80),
-(4, 4, 1, 90),
-(5, 5, 1, 65),
-(6, 1, 2, 90),
-(7, 2, 2, 100),
-(8, 3, 2, 60),
-(9, 4, 2, 75),
-(10, 5, 2, 70),
-(11, 1, 3, 80),
-(12, 2, 3, 90),
-(13, 3, 3, 85),
-(14, 4, 3, 60),
-(15, 5, 3, 70),
-(16, 1, 4, 70),
-(17, 2, 4, 80),
-(18, 3, 4, 50),
-(19, 4, 4, 45),
-(20, 5, 4, 80);
+DROP TABLE IF EXISTS `tb_siswa`;
+CREATE TABLE `tb_siswa` (
+  `id_siswa` int(11) NOT NULL AUTO_INCREMENT,
+  `nis` varchar(20) NOT NULL,
+  `nm_siswa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tempat_lahir` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `kelas` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `jk` enum('Laki-laki','Perempuan') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id_siswa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Indexes for dumped tables
---
+INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nm_siswa`, `tempat_lahir`, `tgl_lahir`, `kelas`, `alamat`, `jk`) VALUES
+(1,	'',	'Siswa 1',	'Padang',	'1995-10-10',	'XII.4',	'Alamat 1 ',	'Laki-laki'),
+(2,	'',	'Siswa 2',	'Padang 2',	'1995-10-11',	'XII.2',	'Alamat 2',	'Perempuan'),
+(3,	'',	'Siswa 3',	'Padang 3',	'1995-10-12',	'X.4',	'Alamat 4',	'Laki-laki'),
+(4,	'',	'Siswa 4',	'Padang 4',	'1995-10-09',	'X.1',	'Alamat 5',	'Laki-laki');
 
---
--- Indeks untuk tabel `tb_alternatif`
---
-ALTER TABLE `tb_alternatif`
-  ADD PRIMARY KEY (`id_alternatif`);
-
---
--- Indeks untuk tabel `tb_kriteria`
---
-ALTER TABLE `tb_kriteria`
-  ADD PRIMARY KEY (`id_kriteria`);
-
---
--- Indeks untuk tabel `tb_nilai`
---
-ALTER TABLE `tb_nilai`
-  ADD PRIMARY KEY (`id_nilai`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `tb_alternatif`
---
-ALTER TABLE `tb_alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tb_kriteria`
---
-ALTER TABLE `tb_kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT untuk tabel `tb_nilai`
---
-ALTER TABLE `tb_nilai`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- 2022-04-14 06:15:44
