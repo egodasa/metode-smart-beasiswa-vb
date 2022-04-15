@@ -1,4 +1,4 @@
--- Adminer 4.6.1 MySQL dump
+-- Adminer 4.7.7 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -10,7 +10,7 @@ SET NAMES utf8mb4;
 DROP TABLE IF EXISTS `tb_hitung`;
 CREATE TABLE `tb_hitung` (
   `id_hitung` int(11) NOT NULL AUTO_INCREMENT,
-  `nm_hitung` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `nm_hitung` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tgl_hitung` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_hitung`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -36,30 +36,31 @@ CREATE TABLE `tb_nilai` (
   `id_kriteria` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
   `nilai` int(11) NOT NULL,
+  `id_hitung` int(11) NOT NULL,
   PRIMARY KEY (`id_nilai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `tb_nilai` (`id_nilai`, `id_kriteria`, `id_siswa`, `nilai`) VALUES
-(1,	1,	1,	75),
-(2,	2,	1,	100),
-(3,	3,	1,	80),
-(4,	4,	1,	90),
-(5,	5,	1,	65),
-(6,	1,	2,	90),
-(7,	2,	2,	100),
-(8,	3,	2,	60),
-(9,	4,	2,	75),
-(10,	5,	2,	70),
-(11,	1,	3,	80),
-(12,	2,	3,	90),
-(13,	3,	3,	85),
-(14,	4,	3,	60),
-(15,	5,	3,	70),
-(16,	1,	4,	70),
-(17,	2,	4,	80),
-(18,	3,	4,	50),
-(19,	4,	4,	45),
-(20,	5,	4,	80);
+INSERT INTO `tb_nilai` (`id_nilai`, `id_kriteria`, `id_siswa`, `nilai`, `id_hitung`) VALUES
+(1,	1,	1,	75,	0),
+(2,	2,	1,	100,	0),
+(3,	3,	1,	80,	0),
+(4,	4,	1,	90,	0),
+(5,	5,	1,	65,	0),
+(6,	1,	2,	90,	0),
+(7,	2,	2,	100,	0),
+(8,	3,	2,	60,	0),
+(9,	4,	2,	75,	0),
+(10,	5,	2,	70,	0),
+(11,	1,	3,	80,	0),
+(12,	2,	3,	90,	0),
+(13,	3,	3,	85,	0),
+(14,	4,	3,	60,	0),
+(15,	5,	3,	70,	0),
+(16,	1,	4,	70,	0),
+(17,	2,	4,	80,	0),
+(18,	3,	4,	50,	0),
+(19,	4,	4,	45,	0),
+(20,	5,	4,	80,	0);
 
 DROP TABLE IF EXISTS `tb_siswa`;
 CREATE TABLE `tb_siswa` (
@@ -80,4 +81,4 @@ INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nm_siswa`, `tempat_lahir`, `tgl_lahi
 (3,	'',	'Siswa 3',	'Padang 3',	'1995-10-12',	'X.4',	'Alamat 4',	'Laki-laki'),
 (4,	'',	'Siswa 4',	'Padang 4',	'1995-10-09',	'X.1',	'Alamat 5',	'Laki-laki');
 
--- 2022-04-14 06:15:44
+-- 2022-04-15 08:08:02
