@@ -7,6 +7,16 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+DROP TABLE IF EXISTS `tb_hasil_perhitungan`;
+CREATE TABLE `tb_hasil_perhitungan` (
+  `id_hasil` int(11) NOT NULL AUTO_INCREMENT,
+  `id_siswa` int(11) NOT NULL,
+  `nilai` decimal(10,2) NOT NULL,
+  `id_hitung` int(11) NOT NULL,
+  PRIMARY KEY (`id_hasil`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 DROP TABLE IF EXISTS `tb_hitung`;
 CREATE TABLE `tb_hitung` (
   `id_hitung` int(11) NOT NULL AUTO_INCREMENT,
@@ -81,4 +91,4 @@ INSERT INTO `tb_siswa` (`id_siswa`, `nis`, `nm_siswa`, `tempat_lahir`, `tgl_lahi
 (3,	'',	'Siswa 3',	'Padang 3',	'1995-10-12',	'X.4',	'Alamat 4',	'Laki-laki'),
 (4,	'',	'Siswa 4',	'Padang 4',	'1995-10-09',	'X.1',	'Alamat 5',	'Laki-laki');
 
--- 2022-04-15 08:08:02
+-- 2022-04-15 16:45:24

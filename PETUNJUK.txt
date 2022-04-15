@@ -1,0 +1,2 @@
+1. Pastikan xampp sudah terinstall. Jika database sudah ada. maka tidak perlu di import/dibuat ulang.
+2. Buat database dengan nama "db_irhas" dan import databasenya dari folder database/dbperabot.sql

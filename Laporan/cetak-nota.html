@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <title>Nota Penjualan</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		<style>
+			body {
+				padding: 20px;
+			}
+			table, tr, th, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			table {
+				width: 100%;
+			}
+			th {
+				background-color: #ffb000;
+				padding: 5px 7px;
+			}
+			td {
+				padding: 5px 7px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="text-align: center;">
+			<h1>Apotek Atikah</h1>
+			<p>
+			Rantau Ikil Kec. Jujuhan Kab. Muaro Bungo, Jambi <br> Nohp 082289122580
+			</p>
+		</div>
+
+		<div style="text-align: left;width: 100%;">
+			<div style="width: 600px;display: inline;">
+				<div style="width: 300px;float: left;">No Faktur</div>
+				<div style="width: 300px;float: right;">{{ no_nota }}</div>
+			</div>
+			<div style="width: 600px;">
+				<div style="width: 300px;float: left;">Tanggal</div>
+				<div style="width: 300px;float: right;">{{ tgl_jual }}</div>
+			</div>
+			<div style="width: 600px;">
+				<div style="width: 300px;float: left;">Nama Pembeli</div>
+				<div style="width: 300px;float: right;">{{ nm_pembeli }}</div>
+			</div>
+			<div style="width: 600px;">
+				<div style="width: 300px;float: left;">Keterangan</div>
+				<div style="width: 300px;float: right;">{{ uraian_jual }}</div>
+			</div>
+		</div>
+		<hr>
+		<table>
+			<tr>
+				<th>No</th>
+				<th>Kode Barang</th>
+				<th>Nama Barang</th>
+				<th>Harga</th>
+				<th>Jumlah</th>
+				<th>Diskon</th>
+				<th>Sub Total</th>
+			</tr>
+      {{ data_barang }}
+				<tr>
+					<td colspan="4">Total</td>
+					<td>{{ jumlah }}</td>
+					<td>{{ diskon }}</td>
+					<td>{{ sub_total }}</td>
+				</tr>
+		</table>
+		<hr>
+
+		<div style="float: right;width: 300px;text-align: center;">
+			{{ tanggal }} <br>
+			Admin
+			<br>
+			<br>
+			<br>
+			<br>
+			(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+		</div>
+
+	</body>
+</html>
